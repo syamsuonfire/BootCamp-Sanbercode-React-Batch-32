@@ -1,6 +1,6 @@
 Data Peserta Sanbercode Bootcamp ReactJS
 1. Nama: Syamsu Rijal Efendi
 2. Email: syamsuefendi@gmail.com
-3. Sistem Operasi yang digunakan: Windows 11
+3. Sistem Operasi yang digunakan: Windows 10
 4. Akun Gitlab: syamsuonfire
 5. Akun Telegram: syamsuonfire
