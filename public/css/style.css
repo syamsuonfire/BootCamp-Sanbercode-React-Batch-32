@@ -1,0 +1,34 @@
+header {
+  height: 100px;
+  align-items: center;
+}
+
+#logo {
+  float: left;
+}
+
+li {
+  list-style: none;
+}
+.header-list li {
+  float: right;
+  padding: 20px 20px;
+  color: #5264c7;
+}
+
+.footer {
+  background-color: #5264c7;
+  color: white;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+#article-list {
+  margin: 50px;
+}
