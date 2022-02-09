@@ -1,89 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Registrasi</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>Register Akun Baru!</h1>
-        <h2>Isilah form dibawah ini</h2>
+      <h1>Register Akun Baru!</h1>
+      <h2>Isilah form dibawah ini</h2>
 
-        <form method="post">
+      <form method="post">
+        <div>
+          <p>
+            <label for="firstname">First Name :</label>
+          </p>
+          <input type="text" name="firstname" id="firtstname" />
+        </div>
 
-            <div>
-                <p>
-                <label for="firstname">First Name :</label>
-                </p>
-                <input type="text" name="firstname" id="firtstname">
-            </div>
+        <div>
+          <p>
+            <label for="lastname">Last Name :</label>
+          </p>
+          <input type="text" name="lastname" id="lastname" />
+        </div>
 
-            <div>
-                  <p>
-                  <label for="lastname">Last Name :</label>
-                 </p>
-                <input type="text" name="lastname" id="lastname">
-            </div>
+        <div>
+          <p><label for="gender">Gender :</label></p>
+          <input type="radio" id="male" name="fav_language" value="male" />
+            <label for="male">Male</label>
+          <input type="radio" id="female" name="fav_language" value="female" />
+            <label for="female">Female</label>
+          <input type="radio" id="other" name="fav_language" value="other" />
+            <label for="other">Other</label>
+        </div>
 
-            <div>
-                <p><label for="gender">Gender :</label>
-                </p>
-                <input type="radio" id="male" name="fav_language" value="male">
-                  <label for="male">Male</label>
-                <input type="radio" id="female" name="fav_language" value="female">
-                  <label for="female">Female</label>
-                <input type="radio" id="other" name="fav_language" value="other">
-                  <label for="other">Other</label>
-            </div>
+        <div>
+          <p><label for="nationality">Nationality :</label></p>
+          <select name="nationality" id="nationality">
+            <option value="indonesia">Indonesia</option>
+            <option value="malaysia">Malaysia</option>
+            <option value="australia">Australia</option>
+            <option value="singapore">Singapore</option>
+          </select>
+        </div>
 
+        <div>
+          <p><label for="study">Sedang Fokus Belajar :</label></p>
+          <select name="study" id="study">
+            <option value="react">React Js</option>
+            <option value="vue">Vue Js</option>
+            <option value="angular">Angular</option>
+          </select>
+        </div>
 
-            <div>
-                <p><label for="nationality">Nationality :</label>
-                </p>
-                <select name="nationality" id="nationality">
-                    <option value="indonesia">Indonesia</option>
-                    <option value="malaysia">Malaysia</option>
-                    <option value="australia">Australia</option>
-                    <option value="singapore">Singapore</option>
-                  </select>
-                </div>
+        <div>
+          <p><label for="gender">Language Spoken :</label></p>
+          <input type="radio" id="male" name="fav_language" value="male" />
+            <label for="male">Male</label>
+          <input type="radio" id="female" name="fav_language" value="female" />
+            <label for="female">Female</label>
+          <input type="radio" id="other" name="fav_language" value="other" />
+            <label for="other">Other</label>
+        </div>
 
-                <div>
-                    <p><label for="study">Sedang Fokus Belajar :</label>
-                    </p>
-                    <select name="study" id="study">
-                        <option value="react">React Js</option>
-                        <option value="vue">Vue Js</option>
-                        <option value="angular">Angular</option>
-                      </select>
-                    </div>
-
-                <div>
-                    <p><label for="gender">Language Spoken :</label>
-                    </p>
-                    <input type="radio" id="male" name="fav_language" value="male">
-                      <label for="male">Male</label>
-                    <input type="radio" id="female" name="fav_language" value="female">
-                      <label for="female">Female</label>
-                    <input type="radio" id="other" name="fav_language" value="other">
-                      <label for="other">Other</label>
-                </div>
-
-            <div>
-                    <p><label for="deskripsi">Deskripsi Diri Saya :</label></p>
-                    <textarea name="deskripsi" id="" cols="30" rows="5" id="deskripsi"></textarea>
-            </div>
-
-
-
-            <p>
-            <button type="submit">Register</button>
-            </p>
-            </form>
-
-
+        <div>
+          <p><label for="deskripsi">Deskripsi Diri Saya :</label></p>
+          <textarea
+            name="deskripsi"
+            id=""
+            cols="30"
+            rows="5"
+            id="deskripsi"
+          ></textarea>
+        </div>
+        <br />
+        <input type="submit" value="submit" />
+      </form>
     </div>
-</body>
+  </body>
 </html>
