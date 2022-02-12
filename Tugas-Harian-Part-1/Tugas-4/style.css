@@ -1,19 +1,63 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
 }
-
 
 /* Buatlah styling section top dibawah ini */
 
+.top {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.top h2 {
+  text-align: center;
+  justify-content: center;
+  font-size: 2em;
+  width: 100%;
+}
+
+.top div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 2em;
+  height: 50px;
+  align-items: center;
+  padding: 20px;
+}
+
+.icon i {
+  padding: 20px;
+}
 
 /* Buatlah styling section container dan card dibawah ini */
 
-.container{
-
+.container {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
+.container .card {
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
+}
+
+.container .card .description {
+  padding: 20px;
+}
+
+.container .card img {
+  width: 100%;
+  object-fit: cover;
+}
 
 /* Aturlah breakpoint dibawah ini menggunakan media queries agar responsive */
+@media only screen and (max-width: 480px) and (max-width: 780px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
