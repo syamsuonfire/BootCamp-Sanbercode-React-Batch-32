@@ -20,3 +20,14 @@ function filterBooksPromise(colorful, amountOfPage) {
 }
 
 // Lanjutkan code untuk menjalankan function filterBookPromise ( menggunakan async/await )
+async function pesanBuku(colorful, amountOfPage) {
+  try {
+    var result = await filterBooksPromise(colorful, amountOfPage);
+    console.log(result);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+pesanBuku(true, 40);
+pesanBuku(false, 250);
+pesanBuku(true, 30);

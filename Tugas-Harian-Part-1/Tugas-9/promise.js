@@ -13,7 +13,7 @@ function readBooksPromise(time, book) {
         resolve(sisaWaktu);
       } else {
         console.log("saya sudah tidak punya waktu untuk baca " + book.name);
-        reject(sisaWaktu);
+        reject(sisaWaktu, "ini sisa waktu saya");
       }
     }, book.timeSpent);
   });
@@ -30,15 +30,14 @@ var time = 10000;
 
 function execute(time, index, booksQueue) {
   readBooksPromise(time, books[index])
-    .then(function (remainingTime) {
-      time = remainingTime;
-      console.log("Sisa waktu", time);
+    .then((sisaWaktu) => {
+      time = sisaWaktu;
       booksQueue = booksQueue - 1;
       if (booksQueue > 0) {
         execute(time, index + 1, booksQueue);
       }
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
 }

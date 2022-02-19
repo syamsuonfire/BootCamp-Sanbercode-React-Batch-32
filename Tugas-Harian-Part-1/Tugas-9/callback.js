@@ -25,14 +25,14 @@ var books = [
 var booksQueue = books.length;
 var time = 10000;
 
-function execute(time, index, booksQueue) {
-  readBooks(time, books[index], function (remainingTime) {
-    time = remainingTime;
+const execute = (time, index, booksQueue) => {
+  readBooks(time, books[index], (sisaWaktu) => {
+    time = sisaWaktu;
     booksQueue = booksQueue - 1;
     if (booksQueue > 0) {
       execute(time, index + 1, booksQueue);
     }
   });
-}
+};
 
 execute(time, 0, booksQueue);
