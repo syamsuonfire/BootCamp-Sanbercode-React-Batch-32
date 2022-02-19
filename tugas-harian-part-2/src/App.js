@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.png";
+import "./App.css";
+
+function Label(props) {
+  return (
+    <>
+      <input type="checkbox" />
+      <label>{props.name}</label>
+      <br />
+    </>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img src={logo} alt="logo" />
+      <h1>THINGS TO DO</h1>
+      <p>During bootcamp in sanbercode</p>
+      <form action="">
+        <Label name="Belajar GIT & CLI" />
+        <Label name="Belajar HTMl & CSS" />
+        <Label name="Belajar Javascript" />
+        <Label name="Belajar ReactJS Dasar" />
+        <Label name="Belajar ReacrJS Advance" />
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 }
