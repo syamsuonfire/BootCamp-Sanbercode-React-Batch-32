@@ -22,7 +22,7 @@ const Tugas11 = () => {
     let typeofValue = e.target.value;
     let name = e.target.name;
 
-    setInput({ ...input, [name]: [typeofValue] });
+    setInput({ ...input, [name]: typeofValue });
 
     // switch (name) {
     //   case "nama":
