@@ -1,45 +1,34 @@
-import React, { useEffect, useState } from "react";
-import "./tugas12.css";
-import axios from "axios";
+import React, { useContext, useEffect } from "react";
+import { DataMahasiswaContext } from "./dataMahasiswaContext";
+import "./tugas13.css";
 
-const Tugas12 = () => {
-  const [dataMahasiswa, setDataMahasiswa] = useState([]);
-  const [input, setInput] = useState({
-    name: "",
-    course: "",
-    score: 0,
-  });
-  const [currentIndex, setCurrentIndex] = useState(-1);
-  const [fetchStatus, setFetchStatus] = useState(true);
+const DataMahasiswaList = () => {
+  const {
+    dataMahasiswa,
+    setDataMahasiswa,
+    input,
+    setInput,
+    currentIndex,
+    setCurrentIndex,
+    functions,
+  } = useContext(DataMahasiswaContext);
+
+  const {
+    fetchData,
+    functionDelete,
+    functionSubmit,
+    functionUpdate,
+    functionEdit,
+  } = functions;
 
   useEffect(() => {
-    const fetchData = async () => {
-      let result = await axios.get(
-        "http://backendexample.sanbercloud.com/api/student-scores"
-      );
-      let data = result.data;
-      let output = data.map((e) => {
-        return {
-          id: e.id,
-          name: e.name,
-          course: e.course,
-          score: e.score,
-        };
-      });
+    fetchData();
+  }, []);
 
-      setDataMahasiswa(output);
-    };
-    if (fetchStatus) {
-      fetchData();
-      setFetchStatus(false);
-    }
-
-    // axios
-    //   .get("http://backendexample.sanbercloud.com/api/student-scores")
-    //   .then((e) => {
-    //     console.log(e);
-    //   });
-  }, [fetchStatus, setFetchStatus]);
+  const handleDelete = (e) => {
+    let idPeserta = parseInt(e.target.value);
+    functionDelete(idPeserta);
+  };
 
   const handleChange = (e) => {
     let typeofValue = e.target.value;
@@ -51,48 +40,11 @@ const Tugas12 = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let { name, course, score } = input;
-
     if (currentIndex === -1) {
-      axios
-        .post(`http://backendexample.sanbercloud.com/api/student-scores`, {
-          name,
-          course,
-          score,
-        })
-        .then((res) => {
-          setFetchStatus(true);
-          // let newData = [
-          //   ...dataMahasiswa,
-          //   {
-          //     id: res.data.id,
-          //     name,
-          //     course,
-          //     score,
-          //   },
-          // ];
-          // setDataMahasiswa(newData);
-        });
+      functionSubmit();
     } else {
-      axios
-        .put(
-          `http://backendexample.sanbercloud.com/api/student-scores/${currentIndex}`,
-          {
-            name,
-            course,
-            score,
-          }
-        )
-        .then((res) => {
-          setFetchStatus(true);
-          // let updatedItem = dataMahasiswa.find((e) => e.id === currentIndex);
-          // updatedItem.name = res.data.name;
-          // updatedItem.course = res.data.course;
-          // updatedItem.score = res.data.score;
-          // setDataMahasiswa([...dataMahasiswa]);
-        });
+      functionUpdate();
     }
-
     setInput({
       name: "",
       course: "",
@@ -101,39 +53,9 @@ const Tugas12 = () => {
     setCurrentIndex(-1);
   };
 
-  const handleDelete = (e) => {
-    let idPeserta = parseInt(e.target.value);
-
-    axios
-      .delete(
-        `http://backendexample.sanbercloud.com/api/student-scores/${idPeserta}`
-      )
-      .then(() => {
-        setFetchStatus(true);
-        // let newData = dataMahasiswa.filter((e) => {
-        //   return e.id !== idPeserta;
-        // });
-        // setDataMahasiswa(newData);
-      });
-  };
-
   const handleEdit = (e) => {
     let idPeserta = parseInt(e.target.value);
-
-    axios
-      .get(
-        `http://backendexample.sanbercloud.com/api/student-scores/${idPeserta}`
-      )
-      .then((res) => {
-        let data = res.data;
-
-        setInput({
-          name: data.name,
-          course: data.course,
-          score: data.score,
-        });
-        setCurrentIndex(data.id);
-      });
+    functionEdit(idPeserta);
   };
 
   const handleText = (param) => {
@@ -231,4 +153,4 @@ const Tugas12 = () => {
   );
 };
 
-export default Tugas12;
+export default DataMahasiswaList;
