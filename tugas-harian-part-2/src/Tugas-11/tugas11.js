@@ -16,11 +16,13 @@ const Tugas11 = () => {
     beratTotal: 0,
   });
 
+  const [currentIndex, setCurrentIndex] = useState(-1);
+
   const handleChange = (e) => {
-    let value = e.target.value;
+    let typeofValue = e.target.value;
     let name = e.target.name;
 
-    setInput({ ...input, [name]: value });
+    setInput({ ...input, [name]: [typeofValue] });
 
     // switch (name) {
     //   case "nama":
@@ -35,23 +37,58 @@ const Tugas11 = () => {
     e.preventDefault();
     console.log(input);
 
-    //let { nama, hargaTotal, beratTotal } = input;
+    let { nama, hargaTotal, beratTotal } = input;
     let newData = dataBuah;
 
-    newData = [
-      ...dataBuah,
-      {
-        nama: input.nama,
-        hargaTotal: input.hargaTotal,
-        beratTotal: input.beratTotal,
-      },
-    ];
+    if (currentIndex === -1) {
+      newData = [
+        ...dataBuah,
+        {
+          nama,
+          hargaTotal,
+          beratTotal,
+        },
+      ];
+    } else {
+      newData[currentIndex] = {
+        nama,
+        hargaTotal,
+        beratTotal,
+      };
+    }
+
     setDataBuah(newData);
+
     setInput({
       nama: "",
       hargaTotal: 0,
       beratTotal: 0,
     });
+    setCurrentIndex(-1);
+  };
+
+  const handleDelete = (e) => {
+    let index = parseInt(e.target.value);
+
+    let deletedItem = dataBuah[index];
+
+    let newData = dataBuah.filter((e) => {
+      return e !== deletedItem;
+    });
+
+    setDataBuah(newData);
+  };
+
+  const handleEdit = (e) => {
+    let index = parseInt(e.target.value);
+    let editItem = dataBuah[index];
+    setInput({
+      ...input,
+      nama: editItem.nama,
+      hargaTotal: editItem.hargaTotal,
+      beratTotal: editItem.beratTotal,
+    });
+    setCurrentIndex(index);
   };
 
   return (
@@ -80,8 +117,12 @@ const Tugas11 = () => {
                     <td>{res.beratTotal} Kg</td>
                     <td>{res.hargaTotal / (res.beratTotal / 1000)}</td>
                     <td>
-                      <button>edit</button>
-                      <button>delete</button>
+                      <button onClick={handleEdit} value={index}>
+                        edit
+                      </button>
+                      <button onClick={handleDelete} value={index}>
+                        delete
+                      </button>
                     </td>
                   </tr>
                 );
