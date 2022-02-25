@@ -1,5 +1,5 @@
 import React from "react";
-import { DataMahasiswaProvider } from "./dataMahasiswaContext";
+import { DataMahasiswaProvider } from "../context/dataMahasiswaContext";
 import DataMahasiswaList from "./dataMahasiswaList";
 
 const Tugas13 = () => {

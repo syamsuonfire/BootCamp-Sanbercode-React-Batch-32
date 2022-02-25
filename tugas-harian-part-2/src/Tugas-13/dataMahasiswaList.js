@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { DataMahasiswaContext } from "./dataMahasiswaContext";
+import { DataMahasiswaContext } from "../context/dataMahasiswaContext";
 import "./tugas13.css";
 
 const DataMahasiswaList = () => {
