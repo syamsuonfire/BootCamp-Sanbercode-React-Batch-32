@@ -11,6 +11,8 @@ const DataMahasiswaList = () => {
     currentIndex,
     setCurrentIndex,
     functions,
+    fetchStatus,
+    setFetchStatus,
   } = useContext(DataMahasiswaContext);
 
   const {
@@ -19,11 +21,15 @@ const DataMahasiswaList = () => {
     functionSubmit,
     functionUpdate,
     functionEdit,
+    handleText,
   } = functions;
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (fetchStatus) {
+      fetchData();
+      setFetchStatus(false);
+    }
+  }, [fetchStatus, setFetchStatus]);
 
   const handleDelete = (e) => {
     let idPeserta = parseInt(e.target.value);
@@ -56,22 +62,6 @@ const DataMahasiswaList = () => {
   const handleEdit = (e) => {
     let idPeserta = parseInt(e.target.value);
     functionEdit(idPeserta);
-  };
-
-  const handleText = (param) => {
-    let nilai = param;
-
-    if (nilai >= 80) {
-      return "A";
-    } else if (nilai >= 70 && nilai < 80) {
-      return "B";
-    } else if (nilai >= 60 && nilai < 70) {
-      return "C";
-    } else if (nilai >= 50 && nilai < 60) {
-      return "D";
-    } else if (nilai < 50) {
-      return "E";
-    }
   };
 
   return (

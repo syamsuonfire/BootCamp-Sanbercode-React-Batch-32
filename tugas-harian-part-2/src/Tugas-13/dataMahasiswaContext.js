@@ -12,6 +12,7 @@ export const DataMahasiswaProvider = (props) => {
   });
   const [currentIndex, setCurrentIndex] = useState(-1);
   let { name, course, score } = input;
+  const [fetchStatus, setFetchStatus] = useState(true);
 
   const fetchData = async () => {
     let result = await axios.get(
@@ -36,10 +37,11 @@ export const DataMahasiswaProvider = (props) => {
         `http://backendexample.sanbercloud.com/api/student-scores/${params}`
       )
       .then(() => {
-        let newData = dataMahasiswa.filter((e) => {
-          return e.id !== params;
-        });
-        setDataMahasiswa(newData);
+        setFetchStatus(true);
+        // let newData = dataMahasiswa.filter((e) => {
+        //   return e.id !== params;
+        // });
+        // setDataMahasiswa(newData);
       });
   };
 
@@ -51,16 +53,17 @@ export const DataMahasiswaProvider = (props) => {
         score,
       })
       .then((res) => {
-        let newData = [
-          ...dataMahasiswa,
-          {
-            id: res.data.id,
-            name,
-            course,
-            score,
-          },
-        ];
-        setDataMahasiswa(newData);
+        setFetchStatus(true);
+        // let newData = [
+        //   ...dataMahasiswa,
+        //   {
+        //     id: res.data.id,
+        //     name,
+        //     course,
+        //     score,
+        //   },
+        // ];
+        // setDataMahasiswa(newData);
       });
   };
 
@@ -75,11 +78,12 @@ export const DataMahasiswaProvider = (props) => {
         }
       )
       .then((res) => {
-        let updatedItem = dataMahasiswa.find((e) => e.id === currentIndex);
-        updatedItem.name = res.data.name;
-        updatedItem.course = res.data.course;
-        updatedItem.score = res.data.score;
-        setDataMahasiswa([...dataMahasiswa]);
+        setFetchStatus(true);
+        // let updatedItem = dataMahasiswa.find((e) => e.id === currentIndex);
+        // updatedItem.name = res.data.name;
+        // updatedItem.course = res.data.course;
+        // updatedItem.score = res.data.score;
+        // setDataMahasiswa([...dataMahasiswa]);
       });
   };
 
@@ -98,12 +102,29 @@ export const DataMahasiswaProvider = (props) => {
       });
   };
 
+  const handleText = (param) => {
+    let nilai = param;
+
+    if (nilai >= 80) {
+      return "A";
+    } else if (nilai >= 70 && nilai < 80) {
+      return "B";
+    } else if (nilai >= 60 && nilai < 70) {
+      return "C";
+    } else if (nilai >= 50 && nilai < 60) {
+      return "D";
+    } else if (nilai < 50) {
+      return "E";
+    }
+  };
+
   const functions = {
     fetchData,
     functionDelete,
     functionSubmit,
     functionUpdate,
     functionEdit,
+    handleText,
   };
 
   return (
@@ -116,6 +137,8 @@ export const DataMahasiswaProvider = (props) => {
         currentIndex,
         setCurrentIndex,
         functions,
+        fetchStatus,
+        setFetchStatus,
       }}
     >
       {props.children}

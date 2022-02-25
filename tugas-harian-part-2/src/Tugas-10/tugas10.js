@@ -7,8 +7,9 @@ const Tugas10 = () => {
   return (
     <div className="App">
       <img src={logo} alt="logo" />
-      <h1>THINGS TO DO</h1>
-      <p>During bootcamp in sanbercode</p>
+      <p>THINGS TO DO</p>
+      <small>During bootcamp in sanbercode</small>
+      <hr />
       <form action="">
         <Label name="Belajar GIT & CLI" />
         <Label name="Belajar HTMl & CSS" />
@@ -16,7 +17,7 @@ const Tugas10 = () => {
         <Label name="Belajar ReactJS Dasar" />
         <Label name="Belajar ReacrJS Advance" />
         <br />
-        <input type="submit" value="Submit" />
+        <button className="button">Send</button>
       </form>
     </div>
   );

@@ -3,9 +3,9 @@ import React from "react";
 const Label = (props) => {
   return (
     <>
-      <input type="checkbox" />
-      <label>{props.name}</label>
-      <br />
+      <div class="input-checkbox">
+        <input type="checkbox" /> <p>{props.name}</p>
+      </div>
     </>
   );
 };
