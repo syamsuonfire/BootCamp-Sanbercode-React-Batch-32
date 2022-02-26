@@ -19,12 +19,15 @@ export const DataMahasiswaProvider = (props) => {
       "http://backendexample.sanbercloud.com/api/student-scores"
     );
     let data = result.data;
+
     let output = data.map((e) => {
+      let indexScore = handleText(e.score);
       return {
         id: e.id,
         name: e.name,
         course: e.course,
         score: e.score,
+        indexScore,
       };
     });
 
