@@ -5,7 +5,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 
 const Tugas15Form = () => {
   let history = useHistory();
-  const { input, setInput, currentIndex, setCurrentIndex, functions } =
+  const { input, setInput, currentIndex, setCurrentIndex, functions, success } =
     useContext(DataMahasiswaContext);
 
   const { functionSubmit, functionUpdate, functionEdit } = functions;
@@ -48,14 +48,24 @@ const Tugas15Form = () => {
       score: 0,
     });
     setCurrentIndex(-1);
-    history.push("/tugas14");
+    history.push("/tugas15");
   };
 
   return (
     <>
       <h1 style={{ textAlign: "center" }}>Form Nilai Mahasiswa</h1>
-      <Link to="/tugas14">
-        <button>Kembali ke Tabel</button>
+      <Link to="/tugas15">
+        <button
+          style={{
+            marginLeft: "190px",
+            backgroundColor: "#04aa6d",
+            color: "white",
+            borderRadius: "10px",
+            border: "none",
+          }}
+        >
+          Kembali ke Tabel
+        </button>
       </Link>
       <div className="container-form">
         <form onSubmit={handleSubmit} method="post">
@@ -66,6 +76,7 @@ const Tugas15Form = () => {
             type="text"
             name="name"
             placeholder="Your name.."
+            required
           />
 
           <label>Mata Kuliah</label>
@@ -75,6 +86,7 @@ const Tugas15Form = () => {
             type="text"
             name="course"
             placeholder=""
+            required
           />
 
           <label>Nilai</label>
@@ -84,6 +96,7 @@ const Tugas15Form = () => {
             type="number"
             name="score"
             placeholder=""
+            required
           />
 
           <input type="submit" value="Submit" />

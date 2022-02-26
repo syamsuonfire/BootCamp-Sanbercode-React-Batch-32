@@ -76,6 +76,7 @@ const Tugas14Form = () => {
             type="text"
             name="name"
             placeholder="Your name.."
+            required
           />
 
           <label>Mata Kuliah</label>
@@ -85,6 +86,7 @@ const Tugas14Form = () => {
             type="text"
             name="course"
             placeholder=""
+            required
           />
 
           <label>Nilai</label>
@@ -94,6 +96,7 @@ const Tugas14Form = () => {
             type="number"
             name="score"
             placeholder=""
+            required
           />
 
           <input type="submit" value="Submit" />

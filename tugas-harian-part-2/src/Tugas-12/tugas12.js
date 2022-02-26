@@ -204,6 +204,7 @@ const Tugas12 = () => {
             type="text"
             name="name"
             placeholder="Your name.."
+            required
           />
 
           <label>Mata Kuliah</label>
@@ -213,6 +214,7 @@ const Tugas12 = () => {
             type="text"
             name="course"
             placeholder=""
+            required
           />
 
           <label>Nilai</label>
@@ -222,6 +224,7 @@ const Tugas12 = () => {
             type="number"
             name="score"
             placeholder=""
+            required
           />
 
           <input type="submit" value="Submit" />

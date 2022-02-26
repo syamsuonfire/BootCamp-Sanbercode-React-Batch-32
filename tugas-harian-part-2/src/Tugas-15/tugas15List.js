@@ -4,7 +4,13 @@ import { DataMahasiswaContext } from "../context/dataMahasiswaContext";
 import "../Tugas-13/tugas13.css";
 import { useHistory } from "react-router-dom";
 import { Table, Tag, Space } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  DownloadOutlined,
+  FormOutlined,
+} from "@ant-design/icons";
+import { Button, Radio } from "antd";
 
 const Tugas15List = () => {
   let history = useHistory();
@@ -27,7 +33,7 @@ const Tugas15List = () => {
 
   const handleEdit = (e) => {
     let idPeserta = parseInt(e.currentTarget.value);
-    history.push(`/tugas14/edit/${idPeserta}`);
+    history.push(`/tugas15/edit/${idPeserta}`);
   };
 
   const columns = [
@@ -57,12 +63,25 @@ const Tugas15List = () => {
       key: "action",
       render: (res, index) => (
         <div>
-          <button onClick={handleEdit} value={res.id}>
+          <Button
+            style={{ marginRight: "10px" }}
+            type="primary"
+            shape="round"
+            onClick={handleEdit}
+            value={res.id}
+            ghost
+          >
             <EditOutlined />
-          </button>
-          <button onClick={handleDelete} value={res.id}>
+          </Button>
+          <Button
+            type="primary"
+            shape="round"
+            onClick={handleDelete}
+            value={res.id}
+            danger
+          >
             <DeleteOutlined />
-          </button>
+          </Button>
         </div>
       ),
     },
@@ -73,8 +92,16 @@ const Tugas15List = () => {
   return (
     <>
       <h1 style={{ textAlign: "center" }}>Daftar Nilai Mahasiswa</h1>
-      <Link to="/tugas14/create">
-        <button>Buat Data Nilai Mahasiswa Baru</button>
+      <Link to="/tugas15/create">
+        <Button
+          style={{ marginLeft: "190px" }}
+          type="primary"
+          shape="round"
+          icon={<FormOutlined />}
+          size="medium"
+        >
+          Create New Data
+        </Button>
       </Link>
       {/* <table id="tablemahasiswa">
         <thead>

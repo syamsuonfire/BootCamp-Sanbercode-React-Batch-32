@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
+import { message } from "antd";
 
 export const DataMahasiswaContext = createContext();
 
@@ -17,6 +18,25 @@ export const DataMahasiswaProvider = (props) => {
     { backgroundColor: "white" },
     { color: "#333" },
   ]);
+  const success = (params) => {
+    switch (params) {
+      case "created":
+        message.success("Data berhasil ditambahkan!");
+        break;
+
+      case "updated":
+        message.success("Data berhasil diperbaharui!");
+        break;
+
+      case "deleted":
+        message.success("Data berhasil dihapus!");
+        break;
+
+      default:
+        message.warning("This is a warning message");
+        break;
+    }
+  };
 
   const fetchData = async () => {
     let result = await axios.get(
@@ -49,6 +69,7 @@ export const DataMahasiswaProvider = (props) => {
         //   return e.id !== params;
         // });
         // setDataMahasiswa(newData);
+        success("deleted");
       });
   };
 
@@ -71,6 +92,7 @@ export const DataMahasiswaProvider = (props) => {
         //   },
         // ];
         // setDataMahasiswa(newData);
+        success("created");
       });
   };
 
@@ -91,6 +113,7 @@ export const DataMahasiswaProvider = (props) => {
         // updatedItem.course = res.data.course;
         // updatedItem.score = res.data.score;
         // setDataMahasiswa([...dataMahasiswa]);
+        success("updated");
       });
   };
 
@@ -156,6 +179,7 @@ export const DataMahasiswaProvider = (props) => {
         fetchStatus,
         setFetchStatus,
         theme,
+        success,
       }}
     >
       {props.children}

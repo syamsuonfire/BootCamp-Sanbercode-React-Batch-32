@@ -116,6 +116,7 @@ const DataMahasiswaList = () => {
             type="text"
             name="name"
             placeholder="Your name.."
+            required
           />
 
           <label>Mata Kuliah</label>
@@ -125,6 +126,7 @@ const DataMahasiswaList = () => {
             type="text"
             name="course"
             placeholder=""
+            required
           />
 
           <label>Nilai</label>
@@ -134,6 +136,7 @@ const DataMahasiswaList = () => {
             type="number"
             name="score"
             placeholder=""
+            required
           />
 
           <input type="submit" value="Submit" />
