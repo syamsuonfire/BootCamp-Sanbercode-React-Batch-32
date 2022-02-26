@@ -13,6 +13,10 @@ export const DataMahasiswaProvider = (props) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   let { name, course, score } = input;
   const [fetchStatus, setFetchStatus] = useState(true);
+  const [theme, setTheme] = useState([
+    { backgroundColor: "white" },
+    { color: "#333" },
+  ]);
 
   const fetchData = async () => {
     let result = await axios.get(
@@ -121,6 +125,14 @@ export const DataMahasiswaProvider = (props) => {
     }
   };
 
+  const handleTheme = () => {
+    if (theme[0].backgroundColor === "white") {
+      setTheme([{ backgroundColor: "#333" }, { color: "white" }]);
+    } else if (theme[0].backgroundColor === "#333") {
+      setTheme([{ backgroundColor: "white" }, { color: "#333" }]);
+    }
+  };
+
   const functions = {
     fetchData,
     functionDelete,
@@ -128,6 +140,7 @@ export const DataMahasiswaProvider = (props) => {
     functionUpdate,
     functionEdit,
     handleText,
+    handleTheme,
   };
 
   return (
@@ -142,6 +155,7 @@ export const DataMahasiswaProvider = (props) => {
         functions,
         fetchStatus,
         setFetchStatus,
+        theme,
       }}
     >
       {props.children}

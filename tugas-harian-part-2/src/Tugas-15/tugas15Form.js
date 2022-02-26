@@ -3,7 +3,7 @@ import { DataMahasiswaContext } from "../context/dataMahasiswaContext";
 import "../Tugas-13/tugas13.css";
 import { Link, useHistory, useParams } from "react-router-dom";
 
-const Tugas14Form = () => {
+const Tugas15Form = () => {
   let history = useHistory();
   const { input, setInput, currentIndex, setCurrentIndex, functions } =
     useContext(DataMahasiswaContext);
@@ -55,17 +55,7 @@ const Tugas14Form = () => {
     <>
       <h1 style={{ textAlign: "center" }}>Form Nilai Mahasiswa</h1>
       <Link to="/tugas14">
-        <button
-          style={{
-            marginLeft: "190px",
-            backgroundColor: "#04aa6d",
-            color: "white",
-            borderRadius: "10px",
-            border: "none",
-          }}
-        >
-          Kembali ke Tabel
-        </button>
+        <button>Kembali ke Tabel</button>
       </Link>
       <div className="container-form">
         <form onSubmit={handleSubmit} method="post">
@@ -103,4 +93,4 @@ const Tugas14Form = () => {
   );
 };
 
-export default Tugas14Form;
+export default Tugas15Form;

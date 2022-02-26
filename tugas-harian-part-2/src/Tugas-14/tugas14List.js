@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { DataMahasiswaContext } from "../context/dataMahasiswaContext";
 import "../Tugas-13/tugas13.css";
 import { useHistory } from "react-router-dom";
+import { AutoComplete } from "antd";
 
 const Tugas14List = () => {
   let history = useHistory();
@@ -31,9 +32,21 @@ const Tugas14List = () => {
   return (
     <>
       <h1 style={{ textAlign: "center" }}>Daftar Nilai Mahasiswa</h1>
+
       <Link to="/tugas14/create">
-        <button>Buat Data Nilai Mahasiswa Baru</button>
+        <button
+          style={{
+            marginLeft: "190px",
+            backgroundColor: "#04aa6d",
+            color: "white",
+            borderRadius: "10px",
+            border: "none",
+          }}
+        >
+          Buat Data Nilai Mahasiswa Baru
+        </button>
       </Link>
+
       <table id="tablemahasiswa">
         <thead>
           <tr>
@@ -57,10 +70,30 @@ const Tugas14List = () => {
                     <td>{res.score}</td>
                     <td>{handleText(res.score)}</td>
                     <td>
-                      <button onClick={handleEdit} value={res.id}>
+                      <button
+                        style={{
+                          backgroundColor: "#04aa6d",
+                          marginRight: "10px",
+                          color: "white",
+                          borderRadius: "5px",
+                          border: "none",
+                        }}
+                        onClick={handleEdit}
+                        value={res.id}
+                      >
                         edit
                       </button>
-                      <button onClick={handleDelete} value={res.id}>
+                      <button
+                        style={{
+                          backgroundColor: "#04aa6d",
+
+                          color: "white",
+                          borderRadius: "5px",
+                          border: "none",
+                        }}
+                        onClick={handleDelete}
+                        value={res.id}
+                      >
                         delete
                       </button>
                     </td>
