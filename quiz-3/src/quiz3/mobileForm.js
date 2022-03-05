@@ -27,8 +27,8 @@ const MobileForm = () => {
         price: 0,
         rating: 0,
         image_url: "",
-        is_android_app: null,
-        is_ios_app: null,
+        is_android_app: true,
+        is_ios_app: true,
       });
       setCurrentIndex(-1);
     };
@@ -37,8 +37,13 @@ const MobileForm = () => {
   const handleChange = (e) => {
     let typeofValue = e.target.value;
     let name = e.target.name;
+    let platform = ["is_android_app", "is_ios_app"];
 
-    setInput({ ...input, [name]: typeofValue });
+    if (platform.indexOf(name) === -1) {
+      setInput({ ...input, [name]: typeofValue });
+    } else {
+      setInput({ ...input, [name]: !input[name] });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -173,7 +178,7 @@ const MobileForm = () => {
             onChange={handleChange}
             type="checkbox"
             name="is_android_app"
-            value={input.is_android_app}
+            checked={input.is_android_app}
           />
 
           <label>Platform iOS</label>
@@ -181,7 +186,7 @@ const MobileForm = () => {
             onChange={handleChange}
             type="checkbox"
             name="is_ios_app"
-            value={input.is_android_app}
+            checked={input.is_ios_app}
           />
           <input type="submit" value="Submit" />
 

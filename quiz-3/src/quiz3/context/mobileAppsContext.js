@@ -15,8 +15,8 @@ export const MobileAppsProvider = (props) => {
     price: 0,
     rating: 0,
     image_url: "",
-    is_android_app: null,
-    is_ios_app: null,
+    is_android_app: true,
+    is_ios_app: true,
   });
 
   const success = (params) => {
@@ -40,8 +40,6 @@ export const MobileAppsProvider = (props) => {
   };
   const [currentIndex, setCurrentIndex] = useState(-1);
 
-  const [search, setSearch] = useState("");
-
   let {
     name,
     description,
@@ -55,6 +53,7 @@ export const MobileAppsProvider = (props) => {
     is_ios_app,
   } = input;
   const [fetchStatus, setFetchStatus] = useState(true);
+  const [searchStatus, setSearchStatus] = useState(true);
 
   const fetchData = async () => {
     let result = await axios.get(
@@ -204,8 +203,8 @@ export const MobileAppsProvider = (props) => {
         functions,
         fetchStatus,
         setFetchStatus,
-        search,
-        setSearch,
+        searchStatus,
+        setSearchStatus,
       }}
     >
       {props.children}

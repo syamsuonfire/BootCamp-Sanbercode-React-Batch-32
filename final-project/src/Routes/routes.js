@@ -1,19 +1,15 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { MobileAppsProvider } from "./context/mobileAppsContext";
-import Nav from "./nav";
-import Home from "./home";
-import MobileList from "./mobileList";
-import MobileForm from "./mobileForm";
-import About from "./about";
-import SearchSection from "./searchSection";
+import { Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { GamesProvider } from "../Context/GamesContext";
+import LayoutComponent from "../Layout/layout";
 
-const Router = () => {
+const Routes = () => {
   return (
     <>
-      <MobileAppsProvider>
+      <GamesProvider>
         <BrowserRouter>
-          <Nav />
+          <LayoutComponent />
           <Switch>
             <Route exact path={"/"} component={Home} />
             <Route exact path={"/mobile-list"} component={MobileList} />
@@ -23,18 +19,17 @@ const Router = () => {
               path={"/mobile-form/edit/:slug"}
               component={MobileForm}
             />
-
             <Route
               exact
               path={"/search/:valueOfSearch"}
-              component={SearchSection}
+              component={MobileForm}
             />
             <Route exact path={"/about"} component={About} />
           </Switch>
         </BrowserRouter>
-      </MobileAppsProvider>
+      </GamesProvider>
     </>
   );
 };
 
-export default Router;
+export default Routes;

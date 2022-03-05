@@ -1,24 +1,50 @@
-import React, { useContext, useEffect } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { MobileAppsContext } from "./context/mobileAppsContext";
 
-const Home = () => {
-  const { mobileApps, functions, fetchStatus, setFetchStatus } =
-    useContext(MobileAppsContext);
+const SearchSection = () => {
+  let { valueOfSearch } = useParams();
+
+  const {
+    mobileApps,
+    functions,
+    fetchStatus,
+    setFetchStatus,
+    searchStatus,
+    setSearchStatus,
+  } = useContext(MobileAppsContext);
 
   const { fetchData, handlePlatform, handlePrice, handleSize } = functions;
 
+  const [searchData, setSearchData] = useState([]);
+
   useEffect(() => {
-    if (fetchStatus) {
-      fetchData();
-      setFetchStatus(false);
+    const fetchSearch = async () => {
+      let result = await axios.get(
+        "http://backendexample.sanbercloud.com/api/mobile-apps"
+      );
+      let data = result.data;
+      let filterData = data.filter((e) => {
+        return Object.values(e)
+          .join("")
+          .toLowerCase()
+          .includes(valueOfSearch.toLowerCase());
+      });
+      console.log(filterData);
+      setSearchData([...filterData]);
+    };
+    if (searchStatus) {
+      fetchSearch();
+      setSearchStatus(false);
     }
-  }, [fetchStatus, setFetchStatus]);
+  }, [searchStatus, setSearchStatus]);
 
   return (
     <>
-      {mobileApps !== null && (
+      {searchData !== null && (
         <>
-          {mobileApps.map((res) => {
+          {searchData.map((res) => {
             return (
               <div className="row">
                 <div className="section">
@@ -74,4 +100,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SearchSection;
