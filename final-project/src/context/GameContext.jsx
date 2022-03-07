@@ -1,34 +1,35 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 import { message } from "antd";
+import Cookies from "js-cookie";
 
-export const MovieContext = createContext();
+export const GameContext = createContext();
 
-export const MovieProvider = (props) => {
-  const [movie, setMovie] = useState([]);
+export const GameProvider = (props) => {
+  const [games, setGames] = useState([]);
   const [input, setInput] = useState({
-    title: "",
-    description: "",
-    year: 0,
-    duration: 0,
+    name: "",
     genre: "",
-    rating: 0,
-    review: "",
+    singlePlayer: true,
+    multiplayer: true,
+    release_year: "",
+    platform: "",
+    release: "",
     image_url: "",
   });
 
   const success = (params) => {
     switch (params) {
       case "created":
-        message.success("Data berhasil ditambahkan!");
+        message.success("Game berhasil ditambahkan!");
         break;
 
       case "updated":
-        message.success("Data berhasil diperbaharui!");
+        message.success("Game berhasil diperbaharui!");
         break;
 
       case "deleted":
-        message.success("Data berhasil dihapus!");
+        message.success("Game berhasil dihapus!");
         break;
 
       default:
@@ -38,55 +39,48 @@ export const MovieProvider = (props) => {
   };
   const [currentIndex, setCurrentIndex] = useState(-1);
 
-  let { title, description, year, duration, genre, rating, review, image_url } =
+  let { name, genre, singlePlayer, multiplayer, platform, release, image_url } =
     input;
 
   const [fetchStatus, setFetchStatus] = useState(true);
 
   const fetchData = async () => {
     let result = await axios.get(
-      "https://backendexample.sanbersy.com/api/data-movie"
+      "https://backendexample.sanbersy.com/api/data-game"
     );
     let data = result.data;
 
     let output = data.map((e) => {
       return {
         id: e.id,
-        title: e.title,
-        description: e.description,
-        year: e.year,
-        duration: e.duration,
+        name: e.name,
         genre: e.genre,
-        rating: e.rating,
-        review: e.review,
+        singlePlayer: e.singlePlayer,
+        multiplayer: e.multiplayer,
+        platform: e.platform,
+        release: e.release,
         image_url: e.image_url,
       };
     });
 
-    setMovie(output);
-  };
-
-  const functionDelete = (params) => {
-    axios
-      .delete(`https://backendexample.sanbersy.com/api/data-movie/${params}`)
-      .then(() => {
-        setFetchStatus(true);
-        success("deleted");
-      });
+    setGames(output);
   };
 
   const functionSubmit = () => {
     axios
-      .post(`https://backendexample.sanbersy.com/api/data-movie`, {
-        title,
-        description,
-        year,
-        duration,
-        genre,
-        rating,
-        review,
-        image_url,
-      })
+      .post(
+        `https://backendexample.sanbersy.com/api/data-game`,
+        {
+          name,
+          genre,
+          singlePlayer,
+          multiplayer,
+          platform,
+          release,
+          image_url,
+        },
+        { headers: { Authorization: `Bearer ${Cookies.get("token")}` } }
+      )
       .then((res) => {
         setFetchStatus(true);
         success("created");
@@ -96,17 +90,17 @@ export const MovieProvider = (props) => {
   const functionUpdate = () => {
     axios
       .put(
-        `https://backendexample.sanbersy.com/api/data-movie/${currentIndex}`,
+        `https://backendexample.sanbersy.com/api/data-game/${currentIndex}`,
         {
-          title,
-          description,
-          year,
-          duration,
+          name,
           genre,
-          rating,
-          review,
+          singlePlayer,
+          multiplayer,
+          platform,
+          release,
           image_url,
-        }
+        },
+        { headers: { Authorization: `Bearer ${Cookies.get("token")}` } }
       )
       .then((res) => {
         setFetchStatus(true);
@@ -116,18 +110,17 @@ export const MovieProvider = (props) => {
 
   const functionEdit = (params) => {
     axios
-      .get(`https://backendexample.sanbersy.com/api/data-movie/${params}`)
+      .get(`https://backendexample.sanbersy.com/api/data-game/${params}`)
       .then((res) => {
         let data = res.data;
 
         setInput({
-          title: data.title,
-          description: data.description,
-          year: data.year,
-          duration: data.duration,
+          name: data.name,
           genre: data.genre,
-          rating: data.rating,
-          review: data.review,
+          singlePlayer: data.singlePlayer,
+          multiplayer: data.multiplayer,
+          platform: data.platform,
+          release: data.release,
           image_url: data.image_url,
         });
         setCurrentIndex(data.id);
@@ -136,17 +129,16 @@ export const MovieProvider = (props) => {
 
   const functions = {
     fetchData,
-    functionDelete,
     functionSubmit,
     functionUpdate,
     functionEdit,
   };
 
   return (
-    <MovieContext.Provider
+    <GameContext.Provider
       value={{
-        movie,
-        setMovie,
+        games,
+        setGames,
         input,
         setInput,
         currentIndex,
@@ -154,9 +146,10 @@ export const MovieProvider = (props) => {
         functions,
         fetchStatus,
         setFetchStatus,
+        success,
       }}
     >
       {props.children}
-    </MovieContext.Provider>
+    </GameContext.Provider>
   );
 };
