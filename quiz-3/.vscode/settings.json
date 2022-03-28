@@ -1,0 +1,6 @@
+{
+    "bracketLens.prefix": "// ",
+    "bracketLens.mode": "auto",
+    "bracketLens.minBracketScopeLines": 2,
+    "bracketLens.maxBracketHeaderLength": 20
+}
